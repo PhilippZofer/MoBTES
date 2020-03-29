@@ -1,4 +1,6 @@
-﻿within MoBTES.Components.SeasonalThermalStorages;
+﻿// CP: 65001
+// SimulationX Version: 4.1.2.63886 x64
+within MoBTES.Components.SeasonalThermalStorages;
 model BTES "BTES model"
 	Modelica.Thermal.FluidHeatFlow.Interfaces.FlowPort_a BTESflow(medium=BHEmedium) "flow for storage chrging " annotation(Placement(
 		transformation(extent={{-10,-10},{10,10}}),
@@ -13,7 +15,7 @@ model BTES "BTES model"
 	Modelica.SIunits.Temperature Tflow(displayUnit="°C") "BTES flow temperature";
 	Modelica.SIunits.Temperature Treturn(displayUnit="°C") "BTES return temperature";
 	Modelica.SIunits.Temperature Tstorage(displayUnit="°C") "Average temperature inside storage volume";
-	Modelica.SIunits.Temperature TboreholeWall[nBHEelementsR](displayUnit="°C") "Borehole wall temperature at half BHE depth";
+	Modelica.SIunits.Temperature TboreholeWall[nBHEelementsR](each displayUnit="°C") "Borehole wall temperature at half BHE depth";
 	Modelica.SIunits.VolumeFlowRate V_BTES(displayUnit="l/s") "BTES volume flow (flow-> return)";
 	Modelica.SIunits.Power P_BTES(displayUnit="kW") "Thermal power";
 	Modelica.SIunits.Energy Q_BTES(
@@ -333,6 +335,18 @@ model BTES "BTES model"
 		  end if;
 		end for;
 	annotation(
+		viewinfo[0](
+			minOrder=0.5,
+			maxOrder=12,
+			mode=0,
+			minStep=0.01,
+			maxStep=0.10000000000000001,
+			relTol=1.0000000000000001e-05,
+			oversampling=4,
+			anaAlgorithm=0,
+			bPerMinStates=true,
+			bPerScaleRows=true,
+			typename="AnaStatInfo"),
 		Icon(
 			coordinateSystem(extent={{-200,-200},{200,200}}),
 			graphics={
@@ -448,6 +462,20 @@ bTVZVcsfL5cMEtiENoCaJJAnWxh/Hom/Wn7f1oW2bIfIGwUAuUyCWBybRBCNRqPRaDQajUaj0Wg0
 Go1Go9FoNBqNRqPRaDQajUaj0Wg0D+2DD/4f1uQV6CtrFtYAAAAASUVORK5CYII=",
 								extent={{-200,-199.4},{200,199.4}})}),
 		Documentation(info="<html>
+<head>
+<style type=\"text/css\">
+a {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt;}
+body, blockquote, table, p, li, dl, ul, ol {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; color: black;}
+h3 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11pt; font-weight: bold;}
+h4 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: bold;}
+h5 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; font-weight: bold;}
+h6 {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; font-weight: bold; font-style:italic}
+pre {font-family: Courier, monospace; font-size: 9pt;}
+td {vertical-align:top;}
+th {vertical-align:top;}
+</style>
+</head>
+
 <h4>General</h4>
 <p>The Modelica Borehole Thermal Energy Storage model (MoBTES) consists of 3 sub-models (see Fig. 1):</p>
 <ol>
@@ -460,7 +488,7 @@ Go1Go9FoNBqNRqPRaDQajUaj0Wg0D+2DD/4f1uQV6CtrFtYAAAAASUVORK5CYII=",
   <caption align=\"bottom\"><strong>Fig. 1: </strong>Model structure</caption>
   <tr>
     <td>
-      <img src=\"modelica://MoBTES/Components/SeasonalThermalStorages/BTESstructure.png\" width=\"700\">
+      <img src=\"c:\\users\\julian\\documents\\modelica\\mobtes\\Components\\SeasonalThermalStorages\\BTESstructure.png\" width=\"700\">
     </td>
   </tr>
 </table>
@@ -471,12 +499,12 @@ Go1Go9FoNBqNRqPRaDQajUaj0Wg0D+2DD/4f1uQV6CtrFtYAAAAASUVORK5CYII=",
 <h5>Local model</h5>
 <p>The local models represent the heat diffusion process around single BHEs. Since the storage model assumes radial symmetry, only one local model and one BHE model are simulated per storage ring. The BHEs inside each ring of the storage are assumed to behave similar. Each local model defines the relation between the borehole wall temperature of one BHE segment and the global temperature, i.e. the average temperature inside the volume element. Currently two options are implemented:</p>
 <ol>
-<li>steady flux model</li>
+<li>steady flux model <a href=\"modelica://MoBTES.UsersGuide.References\">[Franke1998]</a></li>
 <li>finite differences model</li>
 </ol>
 <p>The steady flux model exploits the fact that the thermal resistance between the borehole wall and the average volume temperature can be considered constant for the steady-flux regime. The transition period until the steady-flux regime is approximated by an one artificial capacity. This approach is most valid for scenarios with strong thermal interactions between neighbouring BHEs. It should not be used for systems with large disctances between BHEs. The finite differences approach divides the local model into ring segments. The heat diffusion process between the ring segments is handled with the finite-differences method. The weighted average temperature of the rings defines the associated global temperature. The user has the option to choose the number of rings that should be generated.</p>
 <h5>BHE model</h5>
-<p>For the BHE models there are currently two options. A thermal-resistance model (TRM) which only considers the thermal resistance between the fluid and the borehole wall and a thermal-resistance-capacitance model (TRCM) which additionally considers the thermal capacity of the grout. For each modelling approach models for single-U, double-U and coaxial heat exchangers are available.</p>
+<p>For the BHE models there are currently two options. A thermal-resistance model (TRM) which only considers the thermal resistance between the fluid and the borehole wall and a thermal-resistance-capacitance model (TRCM) which additionally considers the thermal capacity of the grout. For each modelling approach models for single-U, double-U and coaxial heat exchangers are available. <a href=\"modelica://MoBTES.UsersGuide.References\">[Bauer2012]</a></p>
 
 <h4>Model parametrization</h4>
 <h5>Storage</h5>
@@ -485,7 +513,7 @@ Go1Go9FoNBqNRqPRaDQajUaj0Wg0D+2DD/4f1uQV6CtrFtYAAAAASUVORK5CYII=",
   <caption align=\"bottom\"><strong>Fig. 2: </strong>BTES layout options</caption>
   <tr>
     <td>
-   <img src=\"modelica://MoBTES/Components/SeasonalThermalStorages/BHEspacing.png\" width=\"500\">
+   <img src=\"c:\\users\\julian\\documents\\modelica\\mobtes\\Components\\SeasonalThermalStorages\\BHEspacing.png\" width=\"500\">
     </td>
   </tr>
 </table>
@@ -495,7 +523,7 @@ Go1Go9FoNBqNRqPRaDQajUaj0Wg0D+2DD/4f1uQV6CtrFtYAAAAASUVORK5CYII=",
   <caption align=\"bottom\"><strong>Fig. 3: </strong>Vertical cross section</caption>
   <tr>
     <td>
-   <img src=\"modelica://MoBTES/Components/SeasonalThermalStorages/BTESsideView.png\" width=\"500\">
+   <img src=\"c:\\users\\julian\\documents\\modelica\\mobtes\\Components\\SeasonalThermalStorages\\BTESsideView.png\" width=\"500\">
     </td>
   </tr>
 </table>

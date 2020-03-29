@@ -1,10 +1,27 @@
-﻿within MoBTES.UsersGuide;
+﻿// CP: 65001
+// SimulationX Version: 4.1.2.63886 x64
+within MoBTES.UsersGuide;
 class References "References"
 	extends Modelica.Icons.References;
 	annotation(
 		Documentation(info="<html>
 <h4>References</h4>
 <table border=\"0\" cellspacing=\"0\" cellpadding=\"2\">
+    
+    <tr>
+      <td><a href=\" http://elib.uni-stuttgart.de/opus/volltexte/2012/6967/ \">[Bauer2012]</a></td>
+      <td>D. Bauer
+        &quot;Zur thermischen Modellierung von Erdwärmesonden und Erdsonden-Wärmespeichern,&quot;
+        <em>Dissertation</em>,
+        Stuttgart, Germany, 2012.</td>
+    </tr>
+    <tr>
+      <td>[Franke1998]</td>
+      <td>R.Franke
+        &quot;Integrierte dynamische Modellierung und Optimierung von Systemen mit saisonaler Wärmespeicherung,&quot;
+        <em>Book series</em>,
+        in Fortschrittberichte VDI : Reihe 6, Energietechnik Nr. 394, VDI-Verlag,Düsseldorf, Germany, 1998</td>
+    </tr>
     <tr>
       <td><a href=\"https://doi.org/10.1016/j.renene.2016.12.011\">[Tordrup2017]</a></td>
       <td>K.W. Tordrup, S.E. Poulsen, and H.Bjørn

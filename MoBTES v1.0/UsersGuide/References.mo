@@ -9,7 +9,7 @@ class References "References"
 <table border=\"0\" cellspacing=\"0\" cellpadding=\"2\">
     
     <tr>
-      <td><a href=\" http://elib.uni-stuttgart.de/opus/volltexte/2012/6967/ \">[Bauer2012]</a></td>
+      <td><a href=\"http://elib.uni-stuttgart.de/opus/volltexte/2012/6967/ \">[Bauer2012]</a></td>
       <td>D. Bauer
         &quot;Zur thermischen Modellierung von Erdwärmesonden und Erdsonden-Wärmespeichern,&quot;
         <em>Dissertation</em>,
